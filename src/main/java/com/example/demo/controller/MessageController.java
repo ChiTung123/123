@@ -83,4 +83,10 @@ public class MessageController {
 		
 		return page;
 	}
+	
+	@GetMapping("/message/ajaxdemo")
+    public String ajaxdemo() {
+    	
+    	return "message/ajax-message";
+    }
 }
