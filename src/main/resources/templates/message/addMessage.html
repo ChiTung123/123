@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>新增留言頁面</title>
+</head>
+<body>
+<div th:replace="~{layout/navbar}"></div>
+<div class="container">
+   <h1>新增留言頁面</h1>
+   
+   <div class="card">
+  <div class="card-header">
+    新增留言
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">請輸入新訊息</h5>
+   
+   <form th:action="@{/message/post}" method="post">
+   <div>
+     <textarea name="text" class="form-control"></textarea>
+   </div>
+    <button type="submit" class="btn btn-primary">送出</button>
+   </form> 
+  </div>
+</div>
+
+
+  <div class="card">
+  <div class="card-header">
+   最新訊息時間  <span th:text="${latestMessage} ? ${latestMessage.added}"></span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">最新</h5>
+    <p th:text="${latestMessage} ? ${latestMessage.text}"></p>
+    <!-- 若無參數傳入會有錯誤，所以加個判斷式，註解也會吃到錯誤 -->
+  </div>
+</div>
+   
+   
+</div>
+
+</body>
+</html>

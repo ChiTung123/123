@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:replace="~{layout/navbar}"></div>
+<div class="container">
+<h1>檔案上傳</h1>
+<form th:action="@{/photo/uploadPost}" enctype="multipart/form-data" method="post">
+
+  圖片名稱: <input name="photoName"  />
+  <br />
+  
+  檔案: <input name="file" type="file" />
+  
+  <br />
+  
+  <input type="submit" value="送出" />
+
+</form>
+</div>
+</body>
+</html>
