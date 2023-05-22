@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:replace="~{layout/navbar}"></div>
+	<div class="container">
+		<h1>show message page</h1>
+
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+
+				<th:block th:switch="${page.number != 0 }">
+					<li class="page-item" th:case=${true}><a class="page-link"
+						th:href="@{/message/page?(p=${page.number})}">上一頁</a></li>
+					<li class="page-item" th:case=${false}><span class="page-link">上一頁</span></li>
+				</th:block>
+				<th:block
+					th:each=" groupNumber : ${#numbers.sequence(1,page.totalPages/5+1)} ">
+					<th:block
+						th:each=" pageNumber : ${#numbers.sequence(5*groupNumber-4,5*groupNumber)} ">
+						<th:block th:switch="${ page.number != pageNumber -1 }">
+							<li class="page-item" th:case=${true}><a class="page-link"
+								th:href="@{/message/page?(p=${pageNumber})}">[[${pageNumber}]]</a></li>
+							<li class="page-item" th:case=${false}><span
+								class="page-link">[[${pageNumber}]]</span></li>
+						</th:block>
+					</th:block>
+				</th:block>
+				<th:block th:switch="${1+ page.number != page.totalPages }">
+					<li class="page-item" th:case=${true}><a class="page-link"
+						th:href="@{/message/page?(p=${page.number+2})}">下一頁</a></li>
+					<li class="page-item" th:case=${false}><span class="page-link">下一頁</span></li>
+				</th:block>
+			</ul>
+		</nav>
+
+		<th:block th:each=" aMessage : ${page.content} ">
+			<div class="card">
+				<div class="card-header">
+					訊息時間 <span th:text="${aMessage} ? ${aMessage.added}"></span>
+
+				</div>
+				<div class="card-body">
+					<p th:text="${aMessage} ? ${aMessage.text}"></p>
+				</div>
+				<div class="edit-place" style="display: flex">
+					<form th:action="@{/message/edit}">
+						<input type="hidden" name="id" th:value="${aMessage.id}" /> <input
+							class="btn btn-outline-success" type="submit" value="編輯" />
+					</form>
+
+					<form th:action="@{/message/delete}" method="post">
+						<!-- html方式傳送method，上層為post，下層為_method=delete -->
+						<input type="hidden" name="id" th:value="${aMessage.id}" /> <input
+							type="hidden" name="_method" value="delete" /> <input
+							class="btn btn-outline-danger" type="submit" value="刪除" />
+					</form>
+				</div>
+			</div>
+
+		</th:block>
+
+	</div>
+</body>
+</html>
