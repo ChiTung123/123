@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.medel.Message;
 import com.example.demo.service.MessageService;
@@ -66,5 +68,19 @@ public class MessageController {
 	public String delPage(@RequestParam("id") Integer id) {
 		mService.deleteById(id);
 		return "redirect:/message/page";
+	}
+	
+	@ResponseBody
+	@PostMapping("/messages/ajax/post")
+	public Page<Message> addMsgApi(@RequestBody Message msg){
+		
+		Message newMsg = new Message();
+		newMsg.setText(msg.getText());
+		
+		mService.insertMessage(newMsg);
+		
+		Page<Message> page = mService.findByPage(1);
+		
+		return page;
 	}
 }
