@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<style>
+a{text-decoration:none;color:white}
+a:hover{color:grey}
+
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#" ><span style="font-size:40px"><img th:src="@{/image/fakebook01.png}" width="200px"/></span>&reg;</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: auto;">
+					<li class="nav-item" style="padding-inline: 3vw;"><a
+						class="nav-link active" aria-current="page" th:href="@{/mall/shopPage}" id="1st">商城</a>
+					</li>
+					<li class="nav-item" style="padding-inline: 3vw;"><a
+						class="nav-link active" th:href="@{/mall/flashPage}" id="2nd">限時特賣</a></li>
+					<li class="nav-item" style="padding-inline: 3vw;"><a
+						class="nav-link active" th:href="@{/mall/bidPage}" id="3rd">競標商品</a></li>
+					<li class="nav-item" style="padding-inline: 3vw;"><a
+						class="nav-link active" th:href="@{/mall/myShopPage}" id="4th" >個人賣場</a></li>
+					<li class="nav-item" style="padding-inline: 3vw;"><a
+						class="nav-link active" th:href="@{/mall/mePage}" id="5th">我的</a></li>
+						<li class="nav-item" style="padding-inline: 3vw;"><a
+						class="nav-link active" th:href="@{/mall/mePage}" id="6th">回首頁</a></li>
+					
+</ul>
+					<th:block th:switch="${session.loggedInMember == null}">
+						<div th:case="${true}">
+						<ul>
+							<li class="b"><a class="login" th:href="@{/member/loginPage}"
+								target="_self"><button>登入</button></a></li>
+							<li class="b"><a class="create" th:href="@{/member/signUpPage}"
+								target="_self"><button>註冊</button></a></li>
+						</ul>
+						</div>
+						<div th:case="${false}">
+						<ul>
+							<li class="b"><a class="login" href="#"
+								target="_self"><button>登出</button></a></li>
+							<li class="b"><a class="create" href="#"
+								target="_self"><button>好友列表</button></a></li>
+						</ul>
+						</div>
+					</th:block>
+
+
+
+
+
+				
+
+			</div>
+		</div>
+	</nav>
+	
+	<div class="" id="box1"
+		style="background-color:pink; height: 250px; display: none; color: white;position:absolute;z-index:-1;width:100vw;">
+		<span id="span1" style="display:flex; flex-direction:row" >
+		<span style="margin-right:30px"><br>服飾:<br><a href="">女裝</a><br><a href="">機能服/運動服/配件</a><br><a href="">內衣/睡衣/塑身衣</a><br><a href="">襪子</a><br><a href="">童裝配件/孕期服飾</a><br><a href="">男裝</a></span>
+		<span style="margin-right:30px"><br>鞋包配件:<br><a href="">鞋子</a><br><a href="">流行包</a><br><a href="">國際精品/飾品/配件</a><br><a href="">眼鏡</a><br><a href="">髮飾/穿搭配件</a></span>
+		<span style="margin-right:30px"><br>休閒生活:<br><a href="">旅行用品專區</a><br><a href="">登山健行</a><br><a href="">戶外休閒</a><br><a href="">瑜珈用品</a><br><a href="">運動健身</a><br><a href="">汽車用品</a><br><a href="">機車/自行車</a></span>
+		<span style="margin-right:30px"><br>3C:<br><a href="">喇叭/揚聲器/耳機</a><br><a href="">儲存/隨身碟/記憶卡</a><br><a href="">手機/手機周邊配件</a><br><a href="">相機/攝影機</a><br><a href="">繪圖/手寫板</a><br><a href="">滑鼠鍵盤</a><br><a href="">筆電/桌機/平板電腦</a></span>
+		<span style="margin-right:30px"><br>寵物生活:<br><a href="">狗/貓主食</a><br><a href="">狗/貓零食</a><br><a href="">寵物居家用品</a><br><a href="">寵物外出用品</a><br><a href="">寵物營養保健品</a></span>
+		<span><br>有聲書:<br><a href="">朗讀聽書</a><br><a href="">名人說書</a><br><a href="">相聲表演</a><br><a href="">課堂講座</a></span>
+		</span></div>
+		
+	<div class="" id="box2"
+		style="background-color:#212529; height: 200px; display: none; color: white;position:absolute;z-index:100;width:100vw;top:80px">
+		<span id="span2" style="display:flex; flex-direction:row">
+		<span style="margin-right:30px"><br>&nbsp;&nbsp;<a href="">特賣</a><br>&nbsp;&nbsp;<a href="">特賣</a><br>&nbsp;&nbsp;<a href="">特賣</a><br>&nbsp;&nbsp;<a href="">特賣</a><br>&nbsp;&nbsp;<a href="">特賣</a></span>
+		</span></div>
+		
+	<div class="" id="box3"
+		style="background-color:#212529; height: 200px; display: none; color: white;position:absolute;z-index:100;width:100vw;top:80px">
+		<span id="span3" style="display:flex; flex-direction:row">
+		<span style="margin-right:30px"><br>&nbsp;&nbsp;<a href="">第3項</a><br>&nbsp;&nbsp;<a href="">第3項</a><br>&nbsp;&nbsp;<a href="">第3項</a><br>&nbsp;&nbsp;<a href="">第3項</a><br>&nbsp;&nbsp;<a href="">第3項</a></span>
+		</span></div>
+		
+		
+	<div class="" id="box4"
+		style="background-color:#212529; height: 200px; display: none; color: white;position:absolute;z-index:100;width:100vw;top:80px">
+		<span id="span4" style="display:flex; flex-direction:row">
+		<span style="margin-right:30px"><br>&nbsp;&nbsp;<a href="">賣東西</a><br>&nbsp;&nbsp;<a href="">客群分析</a><br>&nbsp;&nbsp;<a href="">賣場評價</a><br>&nbsp;&nbsp;<a href="">問與答</a><br>&nbsp;&nbsp;<a href="">賣場訂單</a></span>
+		</span></div>
+		
+		
+	<div class="" id="box5"
+		style="background-color:#212529; height: 220px; display: none; color: white;position:absolute;z-index:100;width:100vw;top:80px">
+		<span id="span5" style="display:flex; flex-direction:row">
+		<span style="margin-right:30px"><br>&nbsp;&nbsp;<a href="">訂單查詢</a><br>&nbsp;&nbsp;<a href="">我的評價</a><br>&nbsp;&nbsp;<a href="">喜愛商品</a><br>&nbsp;&nbsp;<a href="">最近瀏覽</a><br>&nbsp;&nbsp;<a href="">購物車</a></span>
+		</span></div>
+
+		
+	
+			
+
+
+
+</body>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script>
+let span1  = document.getElementById('span1');
+    let div1  = document.getElementById('1st');
+    let div2  = document.getElementById('2nd');
+    let div3  = document.getElementById('3rd');
+    let div4  = document.getElementById('4th');
+    let div5  = document.getElementById('5th');
+    let box1 = document.getElementById('box1');
+    let box2 = document.getElementById('box2');
+    let box3 = document.getElementById('box3');
+    let box4 = document.getElementById('box4');
+    let box5 = document.getElementById('box5');
+
+    div1.addEventListener("mouseover",function(){
+    
+    pos (span1,div1, event);
+    
+        box1.style.display = "block";
+        box2.style.display = "none";
+        box3.style.display = "none";
+        box4.style.display = "none";
+        box5.style.display = "none";
+    })
+    box1.addEventListener("mouseleave",function(){
+        box1.style.display = "none";
+    })
+
+    div2.addEventListener("mouseover",function(){
+    pos (span2,div2, event);
+        box1.style.display = "none";
+        box2.style.display = "block";
+        box3.style.display = "none";
+        box4.style.display = "none";
+        box5.style.display = "none";
+    })
+    box2.addEventListener("mouseleave",function(){
+        box2.style.display = "none";
+    })
+
+    div3.addEventListener("mouseover",function(){
+    pos (span3,div3, event);
+        box1.style.display = "none";
+        box2.style.display = "none";
+        box3.style.display = "block";
+        box4.style.display = "none";
+        box5.style.display = "none";
+    })
+    box3.addEventListener("mouseleave",function(){
+        box3.style.display = "none";
+    })
+
+    div4.addEventListener("mouseover",function(){
+    pos (span4,div4, event);
+        box1.style.display = "none";
+        box2.style.display = "none";
+        box3.style.display = "none";
+        box4.style.display = "block";
+        box5.style.display = "none";
+    })
+    box4.addEventListener("mouseleave",function(){
+        box4.style.display = "none";
+    })
+
+    div5.addEventListener("mouseover",function(){
+    pos (span5,div5, event);
+        box1.style.display = "none";
+        box2.style.display = "none";
+        box3.style.display = "none";
+        box4.style.display = "none";
+        box5.style.display = "block";
+    })
+    box5.addEventListener("mouseleave",function(){
+        box5.style.display = "none";
+    })
+
+
+
+var pos = function (o, div, event) {  //滑鼠定位賦值函數
+    var posX = 0;  //臨時變數值
+    var e = event || window.event;  //標準化事件物件
+    let oo = getPosition(div);
+    o.style.position = "absolute";  //定義當前物件為絕對定位
+    o.style.left = oo.x + "px";  //用滑鼠指標的x軸坐標設定物件x軸坐標
+}
+
+function getPosition (element) {
+  var x = 0;
+
+  // 搭配上面的示意圖可比較輕鬆理解為何要這麼計算
+  while ( element ) {
+    x += element.offsetLeft - element.scrollLeft + element.clientLeft;
+
+    element = element.offsetParent;
+  }
+
+  return { x: x};
+}
+
+</script>
+
+
+</html>
